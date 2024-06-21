@@ -52,7 +52,23 @@ public class PrettifierTests
     [TestCase(0.12345, ExpectedResult = "0.1")]
 
     // Decimal number rounded to one decimal place
-    [TestCase(123.456, ExpectedResult = "123.5")] 
+    [TestCase(123.456, ExpectedResult = "123.5")]
+
+    // Number with one decimal place that doesn't need rounding
+    [TestCase(5000000.5, ExpectedResult = "5.0M")]
+
+    // Negative number (assuming it returns "Negative Number")
+    [TestCase(-5000000.5, ExpectedResult = "Negative Number")]
+
+    // Zero value
+    [TestCase(0, ExpectedResult = "0")]
+
+    // Maximum double value
+    [TestCase(double.MaxValue, ExpectedResult = "Number greater than Trillion")]
+
+    // Minimum double value (negative)
+    [TestCase(double.MinValue, ExpectedResult = "Negative Number")]
+
     // Method under test: PrettifyNumber_ReturnsPrettifiedString
     public string PrettifyNumber_ReturnsPrettifiedString(double number)
     {
